@@ -10,7 +10,7 @@
 ;　・選んだ数字がCOMより大きい場合は0番のLEDが点灯
 ;④3回目で失敗すると負けとなりエラー音がなる
 ;⑤1秒後に①に戻る
-;⑥3回終了後に長い音がなり、正解数が数字LEDにされる。
+;⑥3ゲーム終了後に長い音がなり、正解数が数字LEDにされる。
 ;⑦終了
 ;
 ;[Description]
@@ -111,7 +111,6 @@ low:				;Low時用処理、残機チェックに続く
 	scall	1
 	jmpf	lifeCheck
 lifeCheck:			;残機チェック
-
 	ldyi	0
 	ldi	1
 	sub			;50番地の残機数から1引く
@@ -124,7 +123,6 @@ gameOver:		        ;ゲームオーバー処理
 	outn	
 	scall	8
 postProc:			;後処理
-
 	ldi	9
 	scall	0xC
 	call	ledOff
