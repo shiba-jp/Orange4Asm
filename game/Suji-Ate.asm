@@ -20,16 +20,28 @@
 ;50:Life
 ;51:Computerの選択値
 ;52:Playerの入力値
+;53:ゲームカウント
+;54:正解数
 ;
 ;[Machine Code]
-;E00:A0824E9F6080A3E1EA0F1220F1EF17E91A17FA1C0FADF6096A3E1E7FCB
-;E80:AfB10F823A140F93F8CF61A0E2A6E2F61F6096A0E1FB9F6096A6E1FB9A0817FC54F12A151E889ECF6096E0F00
+;E00:A3804A44A082481A364E9F6080A3E1EA0F2020F2CF25E91A17FA1C0FADF6096A48164A3E1E7FCB
+;E80:AfB10F823A140F93F8CF61A0E2A6E2F61F6096A0E1FB9F6096A6E1FB9A0817FC54F20A151E889ECF6096E0A35C3F08FE1A451EAFE7
 ;----------------------------------------
 
 	org	0x00
 init:
-	ldyi	0		;PlayerLife50番地に登録
+	ldyi	3		;ゲームカウント:0を53番地に格納
+	ldi	0
+	st	
+	ldyi	4		;正解数:0を54番地に格納
+	st	
+start:
+	ldyi	0		;PlayerLife50番地に格納
 	ldi	2
+	st	
+	ldi	1		;ゲームカウントをインクリメント
+	ldyi	3
+	add	
 	st	
 decideComNo:
 	scall	9
@@ -54,6 +66,10 @@ leaveKey:
 	cpi	0
 	jmpf	low		;結果値 !＝0：Player値が小さい
 	call	ledOff		;結果値 ＝0：正解！
+	ldyi	4
+	ldi	1	
+	add			;正解カウントをインクリメント
+	st	
 	ldyi	3
 	scall	1
 	scall	7
@@ -93,6 +109,7 @@ low:				;Low時用処理、残機チェックに続く
 	scall	1
 	jmpf	lifeCheck
 lifeCheck:			;残機チェック
+
 	ldyi	0
 	ldi	1
 	sub			;50番地の残機数から1引く
@@ -105,8 +122,20 @@ gameOver:		        ;ゲームオーバー処理
 	outn	
 	scall	8
 postProc:			;後処理
+
 	ldi	9
 	scall	0xC
 	call	ledOff
 	scall	0
-	jmpf	init
+	ldyi	3
+	ld	
+	cpi	3		;ゲームカウント:3なら終了
+	jmpf	start
+	jmpf	finish
+finish:
+	ldyi	4
+	ld	
+	outn			;正解数を数字LEDに表示
+	scall	0xA
+end:
+	jmpf	end
