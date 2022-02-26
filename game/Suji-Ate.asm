@@ -131,8 +131,6 @@ postProc:			;後処理
 	ld	
 	cpi	3		;ゲームカウント:3なら終了
 	jmpf	start
-	jmpf	finish
-finish:
 	ldyi	4
 	ld	
 	outn			;正解数を数字LEDに表示
