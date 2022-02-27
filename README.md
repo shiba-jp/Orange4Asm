@@ -151,3 +151,10 @@ A GUI version of the assembler is available at the bottom of the following page.
 This is a Japanese page, but there is an assembler image, so if you don't understand Japanese, you can still download it.
 
 [GUI version of cross assembler](http://www.picosoft.co.jp/ORANGE-4/index.html)
+
+## Original Assembler
+
+Under the tools/assembler directory, you will find the original assembler created by LibreOffice Calc.
+When you type neamock, you can get real-time confirmation of the address number and a description of neamock.
+At the same time, it can also check for incorrect neamock, incorrect Opecode, incorrect Operand, and program area overflow.
+For details, please refer to README (currently under construction).
