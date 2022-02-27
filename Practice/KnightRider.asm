@@ -6,7 +6,7 @@
 ;Reproduce the lights that move left and right of the naito2000 with binary LEDs.
 ;
 ;[Memory]
-;使用無し
+;Not used.
 ;
 ;[Machine Code]
 ;E00:A0F601FB1D7F02A6BfF601FD1F10F00E180EcE2F61
