@@ -33,37 +33,37 @@ but you can also debug it from a PC via USB-serial communication.
 
 ## Instruction Set
 
-| Opecode | Neamock | Operand | Execution Flag | Description                                                                                                                                |
-| :------ | :------ | :------ | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| 0       | ink     |         | 0,1            | Store the inputted number in the A register (no key input, execution FLG=1).                                                               |
-| 1       | outn    |         | 1              | Display the A register value on the numeric LED.                                                                                           |
-| 2       | abyz    |         | 1              | A⇔B、Y⇔Z.                                                                                                                                  |
-| 3       | ay      |         | 1              | A⇔Y.                                                                                                                                       |
-| 4       | st      |         | 1              | Store the A register value at (50+Y).                                                                                                      |
-| 5       | ld      |         | 1              | Store the value at (50+Y) in the A register.                                                                                               |
-| 6       | add     |         | 0,1            | Add the value at (50+Y) to the A register value (when the digit is increased, execution FLG=1).                                            |
-| 7       | sub     |         | 0,1            | Subtract the A register value from the value at (50+Y), and store the result in the A register (if the result is negative, execute FLG=1). |
-| 8       | ldi     | x       | 1              | Store the operand value in the A register.                                                                                                 |
-| 9       | addi    | x       | 0,1            | Add the "operand" value to the A register (at the time of digit increase, execution FLG=1).                                                |
-| A       | ldyi    | x       | 1              | Store "operand" value in Y register.                                                                                                       |
-| B       | addyi   | x       | 0,1            | Add the "operand" value to the Y register (at the time of digit increase, execution FLG=1).                                                |
-| C       | cpi     | x       | 0,1            | If A register value = operand value, execute FLG = 0.                                                                                      |
-| D       | cpyi    | x       | 0,1            | If Y register value = operand value, execute FLG = 0.                                                                                      |
-| E       | scall   | x       | 0,1            | service call.                                                                                                                              |
-| F       | jmpf    | xx      | 0,1            | If execution FLG=1, jump to the specified address.                                                                                         |
-| F60     | call    | xx      | 1              | Jump to specified address (regardless of execution FLG).                                                                                   |
-| F61     | ret     |         | 1              | callBack to the original address.                                                                                                          |
-| F62     | pushA   |         | 1              | Load the A register value to the top of the stack.                                                                                         |
-| F63     | popA    |         | 1              | Store the stack top value in the A register.                                                                                               |
-| F64     | pushB   |         | 1              | Load the B register value to the top of the stack.                                                                                         |
-| F65     | popB    |         | 1              | Store the stack top value in the B register.                                                                                               |
-| F66     | pushY   |         | 1              | Load the Y register value to the top of the stack.                                                                                         |
-| F67     | popY    |         | 1              | Store the stack top value in the Y register.                                                                                               |
-| F68     | pushZ   |         | 1              | Load the Z register value to the top of the stack.                                                                                         |
-| F69     | popZ    |         | 1              | Store the stack top value in the Z register.                                                                                               |
-| F70     | ioctrl  |         | 1              | Set the port specified by the Y register with the A register value (0:D output, 2:D input).                                                |
-| F71     | out     |         | 1              | Outputs the A register value (0 or 1) to the port specified by the Y register.                                                             |
-| F72     | in      |         | 1              | Read the status of the port specified by the Y register into the A register.                                                               |
+| Opecode | Mnemonic | Operand | Execution Flag | Description                                                                                                                                |
+| :------ | :------- | :------ | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| 0       | ink      |         | 0,1            | Store the inputted number in the A register (no key input, execution FLG=1).                                                               |
+| 1       | outn     |         | 1              | Display the A register value on the numeric LED.                                                                                           |
+| 2       | abyz     |         | 1              | A⇔B、Y⇔Z.                                                                                                                                  |
+| 3       | ay       |         | 1              | A⇔Y.                                                                                                                                       |
+| 4       | st       |         | 1              | Store the A register value at (50+Y).                                                                                                      |
+| 5       | ld       |         | 1              | Store the value at (50+Y) in the A register.                                                                                               |
+| 6       | add      |         | 0,1            | Add the value at (50+Y) to the A register value (when the digit is increased, execution FLG=1).                                            |
+| 7       | sub      |         | 0,1            | Subtract the A register value from the value at (50+Y), and store the result in the A register (if the result is negative, execute FLG=1). |
+| 8       | ldi      | x       | 1              | Store the operand value in the A register.                                                                                                 |
+| 9       | addi     | x       | 0,1            | Add the "operand" value to the A register (at the time of digit increase, execution FLG=1).                                                |
+| A       | ldyi     | x       | 1              | Store "operand" value in Y register.                                                                                                       |
+| B       | addyi    | x       | 0,1            | Add the "operand" value to the Y register (at the time of digit increase, execution FLG=1).                                                |
+| C       | cpi      | x       | 0,1            | If A register value = operand value, execute FLG = 0.                                                                                      |
+| D       | cpyi     | x       | 0,1            | If Y register value = operand value, execute FLG = 0.                                                                                      |
+| E       | scall    | x       | 0,1            | service call.                                                                                                                              |
+| F       | jmpf     | xx      | 0,1            | If execution FLG=1, jump to the specified address.                                                                                         |
+| F60     | call     | xx      | 1              | Jump to specified address (regardless of execution FLG).                                                                                   |
+| F61     | ret      |         | 1              | callBack to the original address.                                                                                                          |
+| F62     | pushA    |         | 1              | Load the A register value to the top of the stack.                                                                                         |
+| F63     | popA     |         | 1              | Store the stack top value in the A register.                                                                                               |
+| F64     | pushB    |         | 1              | Load the B register value to the top of the stack.                                                                                         |
+| F65     | popB     |         | 1              | Store the stack top value in the B register.                                                                                               |
+| F66     | pushY    |         | 1              | Load the Y register value to the top of the stack.                                                                                         |
+| F67     | popY     |         | 1              | Store the stack top value in the Y register.                                                                                               |
+| F68     | pushZ    |         | 1              | Load the Z register value to the top of the stack.                                                                                         |
+| F69     | popZ     |         | 1              | Store the stack top value in the Z register.                                                                                               |
+| F70     | ioctrl   |         | 1              | Set the port specified by the Y register with the A register value (0:D output, 2:D input).                                                |
+| F71     | out      |         | 1              | Outputs the A register value (0 or 1) to the port specified by the Y register.                                                             |
+| F72     | in       |         | 1              | Read the status of the port specified by the Y register into the A register.                                                               |
 
 ## Service Call
 
