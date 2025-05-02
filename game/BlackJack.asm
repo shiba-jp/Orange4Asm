@@ -8,8 +8,8 @@
 ;[Memory]
 ;
 ;[Machine Code]
-;E00:80A04AF4EAF6080A05E90F14C0F22E7F1FEAF6080F14
-;E80:AfB10F823AE4EDA06FA814CFF9EF1D0FA5F9EF611A7E1E8F1F
+;E00:80A04AF4EAF6080A050F12C0F20E7F1DEAF6080F12
+;E80:AfB10F82E93AE4EDA06FAA14CFFA0F1B0FA7FA0F611A7E1E8F1D
 ;----------------------------------------
 	org	0x00
 init	ldi	0
@@ -21,7 +21,6 @@ first	scall	A
 	call	random
 	ldyi	0
 	ld	
-	scall	9
 confirm	ink	
 	jmpf	confirm
 	cpi	0
@@ -38,6 +37,7 @@ random	ldyi	f
 addNo	addyi	1
 	ink	
 	jmpf	addNo
+	scall	9
 	ay	
 	ldyi	E
 	st	
